@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.jrsts.todolist.dto.TodoDTO;
 import br.com.jrsts.todolist.entity.Todo;
 import br.com.jrsts.todolist.service.TodoService;
+import jakarta.validation.Valid;
 
 
 @RestController
@@ -30,7 +31,7 @@ public class TodoController {
 
   @SuppressWarnings({ "rawtypes", "unchecked" })
   @PostMapping
-  ResponseEntity<Todo> create(@RequestBody TodoDTO todoDTO) {
+  ResponseEntity<Todo> create(@Valid @RequestBody TodoDTO todoDTO) {
     return new ResponseEntity(todoService.create(todoDTO), HttpStatus.CREATED);
   }
 
@@ -45,7 +46,7 @@ public class TodoController {
   }
 
   @PutMapping("/{id}")
-  ResponseEntity<Todo> update(@RequestBody TodoDTO todoDTO, @PathVariable Long id) {
+  ResponseEntity<Todo> update(@Valid @RequestBody TodoDTO todoDTO, @PathVariable Long id) {
     return ResponseEntity.ok().body(todoService.update(todoDTO, id));
   }
 

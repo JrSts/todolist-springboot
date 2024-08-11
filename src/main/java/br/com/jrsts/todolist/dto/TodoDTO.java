@@ -1,13 +1,24 @@
 package br.com.jrsts.todolist.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.Builder.Default;
+
 /**
  * Todo.dto
  */
 
+ @Builder
+ @AllArgsConstructor
+ @NoArgsConstructor
 public class TodoDTO{
+    @NotBlank
     private String nome;
     private String descricao;
-    private boolean realizado;
+    @Default
+    private boolean realizado = false;
     private int prioridade;
 
     public String getNome() {
