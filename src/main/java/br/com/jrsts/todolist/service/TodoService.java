@@ -32,9 +32,13 @@ public class TodoService {
     return todoRepository.findAll(sort);
   }
 
-  public List<Todo> update(Todo todo) {
-    todoRepository.save(todo);
-    return list();
+  public Todo update(TodoDTO todoDTO, Long id) {
+    Todo todo = todoRepository.findById(id).orElseThrow(() -> new RuntimeException("Todo não encontrado"));
+    todo.setNome(todoDTO.getNome());
+    todo.setDescricao(todoDTO.getDescricao());
+    todo.setRealizado(todoDTO.getRealizado());
+    todo.setPrioridade(todoDTO.getPrioridade());
+    return todoRepository.save(todo);
   }
 
   public List<Todo> delete(Long id) {

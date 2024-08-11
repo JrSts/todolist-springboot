@@ -44,9 +44,9 @@ public class TodoController {
     return ResponseEntity.ok().body(todoService.findOne(id));
   }
 
-  @PutMapping
-  ResponseEntity<List<Todo>> update(@RequestBody Todo todo) {
-    return ResponseEntity.ok().body(todoService.update(todo));
+  @PutMapping("/{id}")
+  ResponseEntity<Todo> update(@RequestBody TodoDTO todoDTO, @PathVariable Long id) {
+    return ResponseEntity.ok().body(todoService.update(todoDTO, id));
   }
 
   @DeleteMapping("/{id}")
